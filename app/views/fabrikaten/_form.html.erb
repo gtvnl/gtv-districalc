@@ -1,0 +1,19 @@
+<%= simple_form_for(@fabrikaat) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: 'Naam' %>
+  </div>
+
+  <% unless @fabrikaat.new_record? %>
+    <div class="form-inputs">
+        <%= f.input :systemen, collection: @fabrikaat.systemen.blank? ? ["<<leeg>>"] : @fabrikaat.systemen, disabled: @fabrikaat.systemen.blank? ? true : false, include_blank: false, class: 'button' %>
+
+        <%= link_to 'Nieuw Systeem', new_fabrikaat_systeem_path(@fabrikaat), class: 'button secondary' %>
+    </div>
+  <% end %>
+
+  <div class="form-actions">
+    <%= f.button :submit, @fabrikaat.new_record? ? 'Maak' : 'Wijzig', id: 'create' %>
+  </div>
+<% end %>

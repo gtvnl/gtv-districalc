@@ -1,0 +1,50 @@
+
+  <div class="top-bar">
+    <div class="row">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">
+            <%= image_tag("gtv.png", size: "50x10", alt: "GTV") %>
+            DistriCalc
+          </li>
+
+          <li><%= link_to 'home', root_path %></li>
+
+          <li>
+            <%= link_to 'fabrikaten', fabrikaten_path %>
+          </li>
+          <li>
+
+          </li>
+          <!-- <li>
+            <a href="#">Fabrikaat</a>
+            <ul class="menu vertical">
+              <li><a href="#">Legrand</a></li>
+              <li><a href="#">Two</a></li>
+              <li><a href="#">Three</a></li>
+            </ul>
+          </li> -->
+
+        </ul>
+      </div>
+        <div class="small-4 columns">
+
+        <form>
+          <div class="input-group">
+            <!-- <li><input type="search" placeholder="Search"></li>
+            <li><button type="button" class="button">Search</button></li> -->
+
+            <%# form_tag orders_path, method: :get do %>
+
+                <!-- <%# select_tag :department, options_for_select(get_departments), { include_blank: true , class: "input-group-field"} %>
+
+                <div class="input-group-button">
+                  <%# submit_tag 'Filter', class: 'button' %>
+                </div> -->
+
+            <%# end %>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
