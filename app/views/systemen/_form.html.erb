@@ -2,10 +2,26 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
+    <%= f.input :fabrikaat, label: "Fabrikaat", input_html: { value: @fabrikaat.name }, disabled: true %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, @systeem.new_record? ? 'Maak' : Wijzig %>
+  <div class="form-inputs">
+    <%= f.input :name, label: "Systeem" %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :klass, label: "Klasse", collection: ["I (geaard)", "II (dubbel geïsoleerd)"], include_blank: false %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :color, label: "Kleur", collection: Color.all, include_blank: false %>
+  </div>
+
+  <div class="form-inputs">
+    <%= f.input :ip_value, label: "IP-waarde", collection: IpValue.all, include_blank: false %>
+  </div>
+<hr />
+  <div class="form-actions text-center">
+    <%= f.button :submit %>
   </div>
 <% end %>

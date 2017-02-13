@@ -1,4 +1,7 @@
-<h1>Nieuw Systeem</h1>
+<%= content_for :page_title do %>
+  <h1 class="text-center">Nieuw Systeem</h1>
+  <hr />
+<% end %>
 
 <%= render 'form', systeem: @systeem %>
 

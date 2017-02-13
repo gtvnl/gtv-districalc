@@ -1,0 +1,9 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken</h1>
+  <hr />
+<% end %>
+
+<%= render 'form', color: @color %>
+
+<%= link_to 'Show', @color %> |
+<%= link_to 'Back', colors_path %>

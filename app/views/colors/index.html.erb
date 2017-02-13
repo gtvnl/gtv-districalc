@@ -1,0 +1,50 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">RAL Kleuren</h1>
+  <hr />
+<% end %>
+
+<% if @colors.blank? %>
+<div class="callout secondary">
+  <h5>Geen gegevens gevonden!</h5>
+  <p>
+    Voeg eerst wat gegevens toe.
+  </p>
+</div>
+<% else %>
+
+<table class="hover">
+  <thead>
+    <tr>
+      <th>Kleur</th>
+      <th>Omschrijving</th>
+      <th>Voorbeeld (bij benadering)</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @colors.each do |color| %>
+      <tr>
+        <td><%= link_to color.name, edit_color_path(color) %></td>
+        <td><%= color.description %></td>
+        <td bgcolor="<%= color.hex %>">
+
+        <td>
+          <!-- DELETE -->
+          <%= link_to color, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+            <i class="fi-x"></i>
+          <% end %>
+        </td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr />
+<% end %>
+
+<br>
+
+<%= link_to new_color_path, class: 'button', id: 'new' do %>
+  <i class="fi-plus"></i> Kleur toevoegen
+<% end %>

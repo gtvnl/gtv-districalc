@@ -1,0 +1,8 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken</h1>
+  <hr />
+<% end %>
+<%= render 'form', ip_value: @ip_value %>
+
+<%= link_to 'Show', @ip_value %> |
+<%= link_to 'Back', ip_values_path %>

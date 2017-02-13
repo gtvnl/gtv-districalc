@@ -1,6 +1,9 @@
-<h1>Editing Systeem</h1>
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken</h1>
+  <hr />
+<% end %>
 
 <%= render 'form', systeem: @systeem %>
 
-<%= link_to 'Show', @systeem %> |
-<%= link_to 'Back', systemen_path %>
+<%= link_to 'Show', edit_fabrikaat_systeem_path(@fabrikaat, @systeem) %> |
+<%= link_to 'Back', fabrikaat_systemen_path %>

@@ -1,31 +1,41 @@
 class SystemenController < ApplicationController
-  before_action :set_fabrikaat
-  before_action :set_systeem, only: [:show, :edit, :update, :destroy]
 
-  # GET /systemen
-  def index
+  include Concerns::SystemMethods
+
+  def alle_systemen
     @systemen = Systeem.all
   end
 
-  # GET /systemen/1
-  def show
+  # GET /systemen
+  def index
+    systemen
   end
 
   # GET /systemen/new
   def new
-    @systeem = Systeem.new
+    systeem
+  end
+
+
+  # GET /systemen/1
+  def show
+    systeem
   end
 
   # GET /systemen/1/edit
   def edit
+    systeem
   end
 
   # POST /systemen
   def create
-    @systeem = Systeem.new(systeem_params)
+    systeem.fabrikaat = fabrikaat
+    systeem.color = color
+    systeem.ip_value = ip_value
 
-    if @systeem.save
-      redirect_to @systeem, notice: 'Systeem was successfully created.'
+    binding.pry
+    if systeem.save
+      redirect_to fabrikaat_systemen_url, notice: 'Systeem aangemaakt.'
     else
       render :new
     end
@@ -33,8 +43,14 @@ class SystemenController < ApplicationController
 
   # PATCH/PUT /systemen/1
   def update
-    if @systeem.update(systeem_params)
-      redirect_to @systeem, notice: 'Systeem was successfully updated.'
+    systeem.fabrikaat = fabrikaat
+    systeem.color = color
+    systeem.ip_value = ip_value
+
+
+
+    if systeem.update(systeem_params)
+      redirect_to fabrikaat_systemen_url, notice: 'Systeem gewijzigd.'
     else
       render :edit
     end
@@ -42,22 +58,9 @@ class SystemenController < ApplicationController
 
   # DELETE /systemen/1
   def destroy
-    @systeem.destroy
-    redirect_to systemen_url, notice: 'Systeem was successfully destroyed.'
+    systeem.destroy
+    redirect_to fabrikaat_systemen_url, notice: 'Systeem verwijderd.'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_fabrikaat
-      @fabrikaat = Fabrikaat.find(params[:fabrikaat_id])
-    end
 
-    def set_systeem
-      @systeem = Systeem.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def systeem_params
-      params.require(:systeem).permit(:name)
-    end
 end

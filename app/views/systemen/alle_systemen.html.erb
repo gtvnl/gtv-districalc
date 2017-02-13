@@ -1,5 +1,5 @@
 <%= content_for :page_title do %>
-  <h1 class="text-center">Systemen</h1>
+  <h1 class="text-center">Overzicht Systemen</h1>
   <hr />
 <% end %>
 
@@ -16,6 +16,7 @@
 <table class="hover">
   <thead>
     <tr>
+      <th>Fabrikaat</th>
       <th>Systeem</th>
       <th>Klasse</th>
       <th>Kleur</th>
@@ -27,10 +28,11 @@
   <tbody>
     <% @systemen.each do |systeem| %>
       <tr>
+        <td><%= link_to systeem.fabrikaat.name, edit_fabrikaat_path(systeem.fabrikaat) %></td>
         <td><%= link_to systeem.name, edit_fabrikaat_systeem_path(systeem.fabrikaat, systeem) %></td>
         <td><%= systeem.klass %></td>
-        <td><%= systeem.color.name %></td>
-        <td><%= systeem.ip_value.name %></td>
+        <td><%= link_to systeem.color.name, edit_color_path(systeem.color) %></td>
+        <td><%= link_to systeem.ip_value.name, edit_ip_value_path(systeem.ip_value) %></td>
 
         <td>
           <!-- DELETE -->
@@ -46,6 +48,9 @@
 <% end %>
 
 <br>
-<%= link_to new_fabrikaat_systeem_path, class: 'button', id: 'new' do %>
-  <i class="fi-plus"></i> Systeem toevoegen
-<% end %>
+<div class="callout primary">
+  <h5>Opmerking:</h5>
+  <p>
+    Voeg een nieuw systeem toe via het fabrikaat.
+  </p>
+</div>

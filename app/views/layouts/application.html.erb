@@ -11,25 +11,29 @@
 
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
+    <%= google_webfonts_init({ google: ['Roboto Slab', 'Roboto']}) %>
   </head>
 
   <body>
     <%= render 'default/top_bar' %>
     <%= render 'default/breadcrumbs' %>
 
-    <div class="row ">
+<div
+    <div class="row">
+      <%= yield :page_title %>
+    </div>
+
+    <div class="row">
       <%= display_flash_messages %>
     </div>
 
-<div class="row">
-  <%= yield %>
-
-
-</div>
+    <div class="row">
+      <%= yield %>
+    </div>
 
     <footer>
       <div class="row">
-        <div class="small-3 small-centered columns">
+        <div class="small-2 small-centered">
             <%= "#{params[:controller]}##{params[:action]}"  %>
         </div>
       </div>

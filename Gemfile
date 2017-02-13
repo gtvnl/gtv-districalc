@@ -16,6 +16,7 @@ gem 'foundation_rails_helper', '>= 3.0.0.rc2', '< 4.0'
 gem 'foundation-icons-sass-rails'
 gem 'gretel'
 gem 'roo'
+gem 'google-webfonts-rails'
 
 group :development, :test do
   gem 'byebug', platform: :mri

@@ -1,0 +1,46 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">IP waardes</h1>
+  <hr />
+<% end %>
+
+<% if @ip_values.blank? %>
+<div class="callout secondary">
+  <h5>Geen data gevonden!</h5>
+  <p>
+    Voeg eerst wat gegevens toe.
+  </p>
+</div>
+<% else %>
+
+<table class="hover">
+  <thead>
+    <tr>
+      <th>IP waarde</th>
+      <th>Omschrijving</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ip_values.each do |ip_value| %>
+      <tr>
+        <td><%= link_to ip_value.name, edit_ip_value_path(ip_value) %></td>
+        <td><%= ip_value.description %></td>
+        <td>
+          <!-- DELETE -->
+          <%= link_to ip_value, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+            <i class="fi-x"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr />
+<% end %>
+
+<br>
+
+<%= link_to new_ip_value_path, class: 'button', id: 'new' do %>
+  <i class="fi-plus"></i> IP-waarde toevoegen
+<% end %>

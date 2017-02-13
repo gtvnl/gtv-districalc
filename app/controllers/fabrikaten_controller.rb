@@ -24,7 +24,7 @@ class FabrikatenController < ApplicationController
     @fabrikaat = Fabrikaat.new(fabrikaat_params)
 
     if @fabrikaat.save
-      redirect_to @fabrikaat, notice: 'Fabrikaat aangemaakt.'
+      redirect_to fabrikaten_url, notice: 'Fabrikaat aangemaakt.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class FabrikatenController < ApplicationController
   # PATCH/PUT /fabrikaten/1
   def update
     if @fabrikaat.update(fabrikaat_params)
-      redirect_to @fabrikaat, notice: 'Fabrikaat gewijzigd.'
+      redirect_to fabrikaten_url, notice: 'Fabrikaat gewijzigd.'
     else
       render :edit
     end
