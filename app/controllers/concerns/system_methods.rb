@@ -51,7 +51,7 @@ module Concerns
           end
 
           def systeem_params
-            params.require(:systeem).permit(:name, :fabrikaat_id, :klass)
+            params.require(:systeem).permit(:name, :fabrikaat_id, :klass, :has_door)
           end
       end
   end

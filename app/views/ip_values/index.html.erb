@@ -4,12 +4,13 @@
 <% end %>
 
 <% if @ip_values.blank? %>
-<div class="callout secondary">
-  <h5>Geen data gevonden!</h5>
-  <p>
-    Voeg eerst wat gegevens toe.
-  </p>
-</div>
+  <div class="callout alert text-center">
+    <h5>Geen data gevonden!</h5>
+    <p>
+      Voeg eerst wat gegevens toe.
+    </p>
+  </div>
+  <br />
 <% else %>
 
 <table class="hover">
@@ -38,8 +39,6 @@
 </table>
 <hr />
 <% end %>
-
-<br>
 
 <%= link_to new_ip_value_path, class: 'button', id: 'new' do %>
   <i class="fi-plus"></i> IP-waarde toevoegen

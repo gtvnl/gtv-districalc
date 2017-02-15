@@ -4,12 +4,13 @@
 <% end %>
 
 <% if @colors.blank? %>
-<div class="callout secondary">
-  <h5>Geen gegevens gevonden!</h5>
-  <p>
-    Voeg eerst wat gegevens toe.
-  </p>
-</div>
+  <div class="callout alert text-center">
+    <h5>Geen gegevens gevonden!</h5>
+    <p>
+      Voeg eerst wat gegevens toe.
+    </p>
+  </div>
+  <hr />
 <% else %>
 
 <table class="hover">
@@ -42,8 +43,6 @@
 </table>
 <hr />
 <% end %>
-
-<br>
 
 <%= link_to new_color_path, class: 'button', id: 'new' do %>
   <i class="fi-plus"></i> Kleur toevoegen

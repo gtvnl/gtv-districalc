@@ -4,12 +4,13 @@
 <% end %>
 
 <% if @fabrikaten.blank? %>
-<div class="callout secondary">
+<div class="callout alert text-center">
   <h5>Geen gegevens gevonden!</h5>
   <p>
     Voeg eerst wat gegevens toe.
   </p>
 </div>
+<hr />
 <% else %>
 
 <table class="hover">
@@ -39,7 +40,6 @@
 <hr />
 <% end %>
 
-<br>
 <%= link_to new_fabrikaat_path, class: 'button', id: 'new' do %>
   <i class="fi-plus"></i> Nieuw Fabrikaat
 <% end %>

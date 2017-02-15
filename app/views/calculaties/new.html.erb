@@ -1,0 +1,8 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">Nieuwe Calculatie</h1>
+  <hr />
+<% end %>
+
+<%= render 'form', calculatie: @calculatie %>
+
+<%= link_to 'Back', calculaties_path %>

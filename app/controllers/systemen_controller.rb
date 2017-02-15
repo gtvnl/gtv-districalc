@@ -16,12 +16,6 @@ class SystemenController < ApplicationController
     systeem
   end
 
-
-  # GET /systemen/1
-  def show
-    systeem
-  end
-
   # GET /systemen/1/edit
   def edit
     systeem
@@ -33,8 +27,9 @@ class SystemenController < ApplicationController
     systeem.color = color
     systeem.ip_value = ip_value
 
-    binding.pry
     if systeem.save
+      FabrikaatSysteem.create(fabrikaat: systeem.fabrikaat, systeem: systeem)
+
       redirect_to fabrikaat_systemen_url, notice: 'Systeem aangemaakt.'
     else
       render :new
@@ -46,8 +41,6 @@ class SystemenController < ApplicationController
     systeem.fabrikaat = fabrikaat
     systeem.color = color
     systeem.ip_value = ip_value
-
-
 
     if systeem.update(systeem_params)
       redirect_to fabrikaat_systemen_url, notice: 'Systeem gewijzigd.'

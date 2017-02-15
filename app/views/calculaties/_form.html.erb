@@ -1,0 +1,15 @@
+<%= simple_form_for(@calculatie) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, label: "Project naam" %>
+    <%= f.input :number, label: "Offerte nummer", input_html: { value: @calculatie.new_record? ? "#{Date.today.year}00".to_i : @calculatie.number } %>
+    <%= f.input :fabrikaat, collection: Fabrikaat.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.fabrikaat.id %>
+    <%= f.input :systeem, collection: Systeem.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.systeem.id
+ %>
+  </div>
+<hr />
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

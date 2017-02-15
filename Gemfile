@@ -5,11 +5,11 @@ gem 'nobrainer'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'prawn'
 gem 'prawn-table'
+gem 'coffee-script'
 gem 'simple_form'
 gem 'foundation-rails'
 gem 'foundation_rails_helper', '>= 3.0.0.rc2', '< 4.0'
@@ -17,6 +17,7 @@ gem 'foundation-icons-sass-rails'
 gem 'gretel'
 gem 'roo'
 gem 'google-webfonts-rails'
+gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -47,6 +48,3 @@ group :test do
   gem 'simplecov'
   gem "codeclimate-test-reporter", "~> 1.0.0"
 end
-
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

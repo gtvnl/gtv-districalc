@@ -1,0 +1,45 @@
+<% if @systemen.blank? %>
+  <div class="callout alert text-center">
+    <h5>Geen gegevens gevonden!</h5>
+    <p>
+      Voeg eerst wat gegevens toe.
+    </p>
+  </div>
+  <hr />
+<% else %>
+
+<table class="hover">
+  <thead>
+    <tr>
+      <th>Fabrikaat</th>
+      <th>Systeem</th>
+      <th>Klasse</th>
+      <th>Kleur</th>
+      <th>Voorzien van deur?</th>
+      <th>IP-waarde</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @systemen.each do |systeem| %>
+      <tr>
+        <td><%= link_to systeem.fabrikaat.name, edit_fabrikaat_path(systeem.fabrikaat) %></td>
+        <td><%= link_to systeem.name, edit_fabrikaat_systeem_path(systeem.fabrikaat, systeem) %></td>
+        <td><%= systeem.klass %></td>
+        <td><%= link_to systeem.color.name, edit_color_path(systeem.color) %></td>
+        <td><%= I18n.t systeem.has_door %></td>
+        <td><%= link_to systeem.ip_value.name, edit_ip_value_path(systeem.ip_value) %></td>
+
+        <td>
+          <!-- DELETE -->
+          <%= link_to fabrikaat_systeem_path(systeem.fabrikaat, systeem), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+            <i class="fi-x"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr />
+<% end %>
