@@ -3,6 +3,10 @@
   <hr />
 <% end %>
 
+<div class="large reveal" id="import" data-reveal>
+  <%= render 'import' %>
+</div>
+
 <% if @calculaties.blank? %>
   <div class="callout alert text-center">
     <h5>Geen gegevens gevonden!</h5>
@@ -16,9 +20,9 @@
 <table class="hover">
   <thead>
     <tr>
-      <th width="100" class="text-right">Nummer</th>
-      <th>Project naam</th>
-      <th width="50" class="text-center">Posities</th>
+      <th width="100px" class="text-right">Nummer</th>
+      <th width="400px">Project naam</th>
+      <th width="50px" class="text-center">Posities</th>
       <th>Fabrikaat</th>
       <th>Systeem</th>
       <th></th>
@@ -32,14 +36,13 @@
         <td>
           <%= calculatie.name %>
           <span class="label warning float-right">
-            <%= link_to import_path do %>
-              <i class="fi-widget"></i> Importeren
-            <% end %>
+            <a data-open="import">Importeren</a>
           </span>
         </td>
         <td class="text-center">0</td>
         <td><%= calculatie.fabrikaat.name %></td>
         <td><%= calculatie.systeem.name %></td>
+
         <td>
           <!-- DELETE -->
           <%= link_to calculatie, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
@@ -52,7 +55,7 @@
 </table>
 
 <% end %>
-
+<hr />
 <%= link_to new_calculatie_path, class: 'button', id: 'new' do %>
   <i class="fi-plus"></i> Calculatie toevoegen
 <% end %>

@@ -1,6 +1,8 @@
-<h1>Editing Calculatie</h1>
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken</h1>
+  <hr />
+<% end %>
 
 <%= render 'form', calculatie: @calculatie %>
 
-<%= link_to 'Show', @calculatie %> |
 <%= link_to 'Back', calculaties_path %>

@@ -2,6 +2,9 @@ class CalculatiesController < ApplicationController
 
   include Concerns::CalculatieMethods
 
+  def import
+  end
+
   # GET /calculaties
   def index
     calculaties
@@ -33,7 +36,7 @@ class CalculatiesController < ApplicationController
   def update
     calculatie.fabrikaat = fabrikaat
     calculatie.systeem = systeem
-    
+
     if calculatie.update(calculatie_params)
       redirect_to calculaties_url, notice: 'Calculatie gewijzigd.'
     else
