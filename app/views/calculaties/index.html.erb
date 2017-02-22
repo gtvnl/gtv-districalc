@@ -3,9 +3,6 @@
   <hr />
 <% end %>
 
-<div class="large reveal" id="import" data-reveal>
-  <%= render 'import' %>
-</div>
 
 <% if @calculaties.blank? %>
   <div class="callout alert text-center">
@@ -33,12 +30,7 @@
     <% @calculaties.each do |calculatie| %>
       <tr>
         <td class="text-right"><%= link_to calculatie.number, edit_calculatie_path(calculatie) %></td>
-        <td>
-          <%= calculatie.name %>
-          <span class="label warning float-right">
-            <a data-open="import">Importeren</a>
-          </span>
-        </td>
+        <td><%= calculatie.name %></td>
         <td class="text-center">0</td>
         <td><%= calculatie.fabrikaat.name %></td>
         <td><%= calculatie.systeem.name %></td>
