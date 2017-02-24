@@ -3,6 +3,10 @@ class CalculatiesController < ApplicationController
   include Concerns::CalculatieMethods
 
   def import
+    xls_file = params[:file]
+    Import.excel(xls_file)
+
+    redirect_to calculaties_url, notice: 'Calculatie geïmporteerd.'
   end
 
   # GET /calculaties

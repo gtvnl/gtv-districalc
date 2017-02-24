@@ -15,6 +15,7 @@ gem 'foundation_rails_helper', '>= 3.0.0.rc2', '< 4.0'
 gem 'foundation-icons-sass-rails'
 gem 'gretel'
 gem 'roo'
+gem 'roo-xls'
 gem 'google-webfonts-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 

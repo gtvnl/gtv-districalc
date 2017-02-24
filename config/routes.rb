@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :calculaties do
     get :import
+    post :import
   end
 
   resources :ip_values

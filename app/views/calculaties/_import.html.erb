@@ -1,6 +1,20 @@
-<h1><%= @calculatie.number %></h1>
-<p class="lead"><%= @calculatie.name %></p>
-<p><%= params.keys %></p>
+<h1 class="text-center"><%= @calculatie.number %></h1>
+<p class="lead text-center"><%= @calculatie.name %></p>
+<hr />
 <button class="close-button" data-close aria-label="Close modal" type="button">
   <span aria-hidden="true">&times;</span>
 </button>
+
+<div class="row">
+<%= form_tag(calculatie_import_path(@calculatie), multipart: true) do %>
+  <div class="form-inputs">
+    <%= file_field_tag :file %>
+  </div>
+  <div class="form-inputs">
+    <%= submit_tag( "Import" ) %>
+  </div>
+  <!-- <label for="exampleFileUpload" class="button">Upload File</label> -->
+  <!-- <input type="file" id="exampleFileUpload" class="show-for-sr"> -->
+<% end %>
+
+</div>
