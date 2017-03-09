@@ -5,6 +5,7 @@ class Calculatie
   field :name, :type => String, required: true
   field :number, :type => Integer, required: true, unique: true, length: {is: 8}
 
-  belongs_to :fabrikaat, required: true
-  belongs_to :systeem, required: true
+  # belongs_to :fabrikaat, required: true
+  # belongs_to :systeem, required: true
+  has_many :posities, dependent: :destroy
 end

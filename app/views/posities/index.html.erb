@@ -1,0 +1,44 @@
+<%= content_for :page_title do %>
+  <h1 class="text-center">Posities</h1>
+  <hr />
+<% end %>
+
+
+<% if @posities.blank? %>
+  <div class="callout alert text-center">
+    <h5>Geen gegevens gevonden!</h5>
+    <p>
+      Voeg eerst wat gegevens toe.
+    </p>
+  </div>
+  <hr />
+<% else %>
+
+<table class="hover">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posities.each do |positie| %>
+      <tr>
+        <td><%= positie.number %></td>
+        <td><%= positie.name %></td>
+        <td><%= positie.location %></td>
+        <td><%= link_to 'Show', positie %></td>
+        <td><%= link_to 'Edit', edit_positie_path(positie) %></td>
+        <td><%= link_to 'Destroy', positie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+<hr />
+
+<%= link_to 'New Positie', new_positie_path %>

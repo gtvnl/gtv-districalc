@@ -18,11 +18,11 @@
   <thead>
     <tr>
       <th width="100px" class="text-right">Nummer</th>
-      <th width="400px">Project naam</th>
+      <th>Project naam</th>
       <th width="50px" class="text-center">Posities</th>
-      <th>Fabrikaat</th>
-      <th>Systeem</th>
-      <th></th>
+      <!-- <th>Fabrikaat</th> -->
+      <!-- <th>Systeem</th> -->
+      <th width="10px"></th>
     </tr>
   </thead>
 
@@ -31,9 +31,9 @@
       <tr>
         <td class="text-right"><%= link_to calculatie.number, edit_calculatie_path(calculatie) %></td>
         <td><%= calculatie.name %></td>
-        <td class="text-center">0</td>
-        <td><%= calculatie.fabrikaat.name %></td>
-        <td><%= calculatie.systeem.name %></td>
+        <td class="text-center"><%= link_to calculatie.posities.count, calculatie_posities_path(calculatie) %></td>
+        <!-- <td><%# calculatie.fabrikaat.name %></td> -->
+        <!-- <td><%# calculatie.systeem.name %></td> -->
 
         <td>
           <!-- DELETE -->

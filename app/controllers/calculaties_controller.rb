@@ -1,13 +1,7 @@
 class CalculatiesController < ApplicationController
 
   include Concerns::CalculatieMethods
-
-  def import
-    xls_file = params[:file]
-    Import.excel(xls_file)
-
-    redirect_to calculaties_url, notice: 'Calculatie geïmporteerd.'
-  end
+  include Concerns::Importable
 
   # GET /calculaties
   def index
@@ -26,8 +20,8 @@ class CalculatiesController < ApplicationController
 
   # POST /calculaties
   def create
-    calculatie.fabrikaat = fabrikaat
-    calculatie.systeem = systeem
+    # calculatie.fabrikaat = fabrikaat
+    # calculatie.systeem = systeem
 
     if calculatie.save
       redirect_to calculaties_url, notice: 'Calculatie aangemaakt.'
@@ -38,8 +32,8 @@ class CalculatiesController < ApplicationController
 
   # PATCH/PUT /calculaties/1
   def update
-    calculatie.fabrikaat = fabrikaat
-    calculatie.systeem = systeem
+    # calculatie.fabrikaat = fabrikaat
+    # calculatie.systeem = systeem
 
     if calculatie.update(calculatie_params)
       redirect_to calculaties_url, notice: 'Calculatie gewijzigd.'
@@ -53,6 +47,5 @@ class CalculatiesController < ApplicationController
     calculatie.destroy
     redirect_to calculaties_url, notice: 'Calculatie verwijderd.'
   end
-
 
 end

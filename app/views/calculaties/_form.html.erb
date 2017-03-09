@@ -8,15 +8,15 @@
   <div class="form-inputs">
     <%= f.input :name, label: "Project naam" %>
     <%= f.input :number, label: "Offerte nummer", input_html: { value: @calculatie.new_record? ? "#{Date.today.year}00".to_i : @calculatie.number } %>
-    <%= f.input :fabrikaat, collection: Fabrikaat.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.fabrikaat.id %>
-    <%= f.input :systeem, collection: Systeem.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.systeem.id
- %>
+    <%# f.input :fabrikaat, collection: Fabrikaat.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.fabrikaat.id %>
+    <%# f.input :systeem, collection: Systeem.all, include_blank: false, selected: @calculatie.new_record? ? nil : @calculatie.systeem.id %>
   </div>
-<hr />
+  <hr />
 
-<div class="expanded large button-group">
+  <div class="expanded large button-group">
     <%= f.button :submit, class: "hollow" %>
-    <%= link_to 'Importeren', calculatie_import_path(@calculatie), class: "button hollow", remote: true, "data-open" => "import" %>
-
+    <% unless @calculatie.new_record? %>
+      <%= link_to 'Importeren', calculatie_import_path(@calculatie), class: "button hollow", remote: true, "data-open" => "import" %>
+    <% end %>
   </div>
 <% end %>

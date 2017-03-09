@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :posities
   root 'calculaties#index'
 
   resources :calculaties do
+    resources :posities
     get :import
     post :import
   end
