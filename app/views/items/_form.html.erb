@@ -1,0 +1,16 @@
+<%= simple_form_for(@item) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :supplier %>
+    <%= f.input :number %>
+    <%= f.input :description %>
+    <%= f.input :bruto %>
+    <%= f.input :discount %>
+    <%= f.input :netto %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

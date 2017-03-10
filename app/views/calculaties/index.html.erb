@@ -1,27 +1,21 @@
+<!-- Page header -->
 <%= content_for :page_title do %>
   <h1 class="text-center">Calculaties</h1>
   <hr />
 <% end %>
 
-
+<!-- Table -->
 <% if @calculaties.blank? %>
-  <div class="callout alert text-center">
-    <h5>Geen gegevens gevonden!</h5>
-    <p>
-      Voeg eerst wat gegevens toe.
-    </p>
-  </div>
-  <hr />
+  <%= render 'default/no_data' %>
 <% else %>
 
 <table class="hover">
   <thead>
     <tr>
       <th width="100px" class="text-right">Nummer</th>
+      <th width="50px" class="text-left">Posities</th>
+
       <th>Project naam</th>
-      <th width="50px" class="text-center">Posities</th>
-      <!-- <th>Fabrikaat</th> -->
-      <!-- <th>Systeem</th> -->
       <th width="10px"></th>
     </tr>
   </thead>
@@ -30,10 +24,9 @@
     <% @calculaties.each do |calculatie| %>
       <tr>
         <td class="text-right"><%= link_to calculatie.number, edit_calculatie_path(calculatie) %></td>
+        <td class="text-left"><%= link_to calculatie.posities.count, calculatie_posities_path(calculatie) %></td>
+
         <td><%= calculatie.name %></td>
-        <td class="text-center"><%= link_to calculatie.posities.count, calculatie_posities_path(calculatie) %></td>
-        <!-- <td><%# calculatie.fabrikaat.name %></td> -->
-        <!-- <td><%# calculatie.systeem.name %></td> -->
 
         <td>
           <!-- DELETE -->

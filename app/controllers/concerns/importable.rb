@@ -133,6 +133,30 @@ module Concerns
             raise "Fout bij het importeren"
           end
 
+        posities.count.times do |index|
+          puts index
+          ((start_pos[index] - 1)..(end_pos[index] - 11)).each do |line|
+
+              # [0] Aantal producten
+              # [1] Artikelnummer
+              # [2] Omschrijving
+              # [3] Stuksprijs bruto
+              # [4] Totaalprijs
+              # [5] Korting artikelgroep
+              # [6] Nettoprijs per stuk
+
+              aantal = calculatie.parse[line][0].to_i
+              artnr = calculatie.parse[line][1].to_s
+              desc = calculatie.parse[line][2].to_s
+              bruto = calculatie.parse[line][3].to_d
+              korting = calculatie.parse[line][5].to_d
+              netto = calculatie.parse[line][6].to_d unless calculatie.parse[line][6].nil?
+
+              item = Item.upsert!(supplier: "Hager", number: artnr, description: desc, bruto: bruto, discount: korting, netto: netto)
+
+          end
+        end
+
         error = errors.blank? ? nil : "Fout in posities: #{errors.join(', ')}"
         change = changed.blank? ? nil : "De volgende velden zijn aangepast: #{changed.join(', ')}"
 
@@ -143,6 +167,7 @@ module Concerns
         else
           flash[:success] = "Hagercad calculatie geïmporteerd."
         end
+
 
         redirect_to calculaties_url
       end

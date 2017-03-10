@@ -1,5 +1,10 @@
----
 nl:
+  views:
+    pagination:
+      previous: 'Vorige'
+      next: 'Volgende'
+      first: 'Eerste'
+      last: 'Laatste'
   'true': 'Ja'
   'false': 'Nee'
   activerecord:

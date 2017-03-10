@@ -1,5 +1,14 @@
-<h1>New Positie</h1>
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Nieuwe Positie</h1>
+  <hr />
+<% end %>
 
+<!-- Breadcrumbs -->
+<% breadcrumb :posities, @posities %>
+
+<!-- Form -->
 <%= render 'form', positie: @positie %>
 
+<!-- Bottom links -->
 <%= link_to 'Back', posities_path %>

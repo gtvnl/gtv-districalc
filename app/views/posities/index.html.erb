@@ -1,44 +1,97 @@
+<!-- Page header -->
 <%= content_for :page_title do %>
-  <h1 class="text-center">Posities</h1>
+  <h1 class="text-center"><%= @calculatie.number %></h1>
+  <h5 class="text-center"><%= @calculatie.name %></h5>
   <hr />
 <% end %>
 
+<!-- Breadcrumbs -->
+<% breadcrumb :posities, @posities %>
 
+<!-- Modal -->
+<div class="large reveal" id="import" data-reveal>
+  <%= render 'calculaties/import' %>
+</div>
+
+<!-- Table -->
 <% if @posities.blank? %>
-  <div class="callout alert text-center">
-    <h5>Geen gegevens gevonden!</h5>
-    <p>
-      Voeg eerst wat gegevens toe.
-    </p>
-  </div>
-  <hr />
+  <%= render 'default/no_data' %>
 <% else %>
 
-<table class="hover">
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Name</th>
-      <th>Location</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <% if @locations.count == 1 %>
 
-  <tbody>
-    <% @posities.each do |positie| %>
-      <tr>
-        <td><%= positie.number %></td>
-        <td><%= positie.name %></td>
-        <td><%= positie.location %></td>
-        <td><%= link_to 'Show', positie %></td>
-        <td><%= link_to 'Edit', edit_positie_path(positie) %></td>
-        <td><%= link_to 'Destroy', positie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <table class="hover">
+      <thead>
+        <tr>
+          <th>Positie</th>
+          <th>Naam</th>
+          <th>Fabrikaat</th>
+          <th>Systeem</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posities.each do |positie| %>
+          <tr>
+            <td><%= link_to positie.number, edit_calculatie_positie_path(@calculatie, positie) %></td>
+            <td><%= positie.name %></td>
+            <td><%= positie.fabrikaat.name %></td>
+            <td><%= positie.systeem.name %></td>
+            <td>
+              <!-- DELETE -->
+              <%= link_to calculatie_positie_path(@calculatie, positie), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+                <i class="fi-x"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+
+    <% @locations.each do |location| %>
+    <div class="callout primary text-center">
+      <strong><%= location %></strong>
+    </div>
+      <table class="hover">
+        <thead>
+          <tr>
+            <th>Positie</th>
+            <th>Naam</th>
+            <th>Locatie</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% posities = @calculatie.posities.where(location: location) %>
+          <% posities.each do |positie| %>
+            <tr>
+              <td><%= link_to positie.number, edit_calculatie_positie_path(@calculatie, positie) %></td>
+              <td><%= positie.name %></td>
+              <td><%= positie.fabrikaat.name %></td>
+              <td><%= positie.systeem.name %></td>
+              <td>
+                <%= link_to calculatie_positie_path(@calculatie, positie), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+                  <i class="fi-x"></i>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     <% end %>
-  </tbody>
-</table>
-
+  <% end %>
 <% end %>
 <hr />
 
-<%= link_to 'New Positie', new_positie_path %>
+<div class="expanded large button-group">
+<%= link_to new_calculatie_positie_path(@calculatie), class: 'button', id: 'new', data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
+  <i class="fi-plus"></i> Positie toevoegen
+<% end %>
+
+<% unless @calculatie.new_record? %>
+  <%= link_to calculatie_import_path(@calculatie), class: "button hollow", remote: true, "data-open" => "import", data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
+    <i class="fi-upload"></i> Calculatie importeren
+  <% end %>
+<% end %>
+</div>

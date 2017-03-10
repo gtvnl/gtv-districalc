@@ -20,9 +20,6 @@ class CalculatiesController < ApplicationController
 
   # POST /calculaties
   def create
-    # calculatie.fabrikaat = fabrikaat
-    # calculatie.systeem = systeem
-
     if calculatie.save
       redirect_to calculaties_url, notice: 'Calculatie aangemaakt.'
     else
@@ -32,9 +29,6 @@ class CalculatiesController < ApplicationController
 
   # PATCH/PUT /calculaties/1
   def update
-    # calculatie.fabrikaat = fabrikaat
-    # calculatie.systeem = systeem
-
     if calculatie.update(calculatie_params)
       redirect_to calculaties_url, notice: 'Calculatie gewijzigd.'
     else

@@ -2,46 +2,52 @@ crumb :root do
   link "Home", root_path
 end
 
-crumb :pages do
-  link "Alle Paginas", pages_path
+# Calculaties
+crumb :calculaties do
+  link "Calculaties", calculaties_path
 end
 
-crumb :page do |page|
-  parent :pages
-  link page.title, page
+crumb :calculatie do |calculatie|
+  if params[:calculatie_id].present?
+    @calculatie = Calculatie.find(params[:calculatie_id])
+  else
+    @calculatie = calculatie
+  end
+  parent :calculaties
+  link @calculatie.number, edit_calculatie_path(@calculatie)
 end
 
-crumb :lines do |lines|
-  @page = Page.find(params[:page_id])
-
-  parent :pages
-  link @page.title, @page
-  link "Alle Regels", page_lines_path
+crumb :posities do
+  parent :calculatie
+  link "Posities", calculatie_posities_path
 end
 
-crumb :line do |line|
-  parent :pages
-  link line.page.title, line.page
-  link "ALLE REGELS", page_lines_path
-  link "Regel #{line.number}", page_line_path(line)
+crumb :positie do |positie|
+  if params[:calculatie_id].present?
+    @calculatie = Calculatie.find(params[:calculatie_id])
+  else
+    @calculatie = calculatie
+  end
+  parent :posities
+  link positie.number, edit_calculatie_positie_path(@calculatie, positie)
 end
 
-crumb :items do |items|
-  @page = Page.find(params[:page_id])
-  @regel = Line.find(params[:line_id])
-
-  parent :lines
-  link "Regel #{@regel.number}", page_line_path(@page, @regel)
-  link "ALLE MODULEN", page_line_items_path
+crumb :fabrikaten do
+  link "Alle Fabrikaten", fabrikaten_path
 end
 
-crumb :item do |item|
-  @page = Page.find(params[:page_id])
-  @regel = Line.find(params[:line_id])
-
-  parent :items
-  link "Module #{item.number}"
+crumb :systemen do
+  link "Alle Systemen", alle_systemen_path
 end
+
+crumb :ip_waardes do
+  link "Alle IP-waardes", calculaties_path
+end
+
+crumb :kleuren do
+  link "Alle Kleuren", calculaties_path
+end
+
 
 # If you want to split your breadcrumbs configuration over multiple files, you
 # can create a folder named `config/breadcrumbs` and put your configuration

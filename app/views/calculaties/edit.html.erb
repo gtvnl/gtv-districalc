@@ -1,10 +1,14 @@
+<!-- Page header -->
 <%= content_for :page_title do %>
   <h1 class="text-center">Bewerken</h1>
   <hr />
 <% end %>
 
+<!-- Breadcrumbs -->
+<% breadcrumb :calculatie, @calculatie %>
 
-
+<!-- Form -->
 <%= render 'form', calculatie: @calculatie %>
 
+<!-- Bottom links -->
 <%= link_to 'Back', calculaties_path %>

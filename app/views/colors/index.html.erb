@@ -4,13 +4,7 @@
 <% end %>
 
 <% if @colors.blank? %>
-  <div class="callout alert text-center">
-    <h5>Geen gegevens gevonden!</h5>
-    <p>
-      Voeg eerst wat gegevens toe.
-    </p>
-  </div>
-  <hr />
+  <%= render 'default/no_data' %>
 <% else %>
 
 <table class="hover">

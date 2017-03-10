@@ -1,13 +1,27 @@
-<%= simple_form_for(@positie) do |f| %>
+<%= simple_form_for([@calculatie, @positie]) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :number %>
-    <%= f.input :name %>
-    <%= f.input :location %>
+
+    <% if f.object.new_record? %>
+      <% if @calculatie.posities.last.nil? %>
+        <%= f.input :number, label: "Positie", input_html: { value: 10 } %>
+      <% else %>
+        <%= f.input :number, label: "Positie", input_html: { value: @calculatie.posities.last.number + 10 } %>
+      <% end %>
+    <% else %>
+      <%= f.input :number, label: "Positie" %>
+    <% end %>
+
+    <%= f.input :name, label: "Naam" %>
+    <%= f.input :location, label: "Locatie" %>
+
+    <%= f.input :fabrikaat, collection: Fabrikaat.all, include_blank: false, selected: @positie.fabrikaat.nil? ? nil : @positie.fabrikaat.id %>
+    <%= f.input :systeem, collection: Systeem.all, include_blank: false, selected: @positie.systeem.nil? ? nil : @positie.systeem.id %>
+  </div>
+  <hr />
+  <div class="expanded large button-group">
+    <%= f.button :submit, class: "hollow" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
 <% end %>

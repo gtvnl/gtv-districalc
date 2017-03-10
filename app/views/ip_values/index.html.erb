@@ -4,13 +4,7 @@
 <% end %>
 
 <% if @ip_values.blank? %>
-  <div class="callout alert text-center">
-    <h5>Geen data gevonden!</h5>
-    <p>
-      Voeg eerst wat gegevens toe.
-    </p>
-  </div>
-  <br />
+  <%= render 'default/no_data' %>
 <% else %>
 
 <table class="hover">

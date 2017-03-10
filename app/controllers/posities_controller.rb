@@ -1,30 +1,37 @@
 class PositiesController < ApplicationController
-  before_action :set_positie, only: [:show, :edit, :update, :destroy]
 
-  # GET /posities
-  def index
+  include Concerns::PositieMethods
+
+  def alle_posities
     @posities = Positie.all
   end
 
-  # GET /posities/1
-  def show
+  # GET /posities
+  def index
+    posities
   end
 
   # GET /posities/new
   def new
-    @positie = Positie.new
+    positie
+  end
+
+  def show
   end
 
   # GET /posities/1/edit
   def edit
+    positie
   end
 
   # POST /posities
   def create
-    @positie = Positie.new(positie_params)
-
-    if @positie.save
-      redirect_to @positie, notice: 'Positie was successfully created.'
+    positie.calculatie = calculatie
+    positie.fabrikaat = fabrikaat
+    positie.systeem = systeem
+    
+    if positie.save
+      redirect_to calculatie_posities_url, notice: 'Positie aangemaakt.'
     else
       render :new
     end
@@ -32,8 +39,12 @@ class PositiesController < ApplicationController
 
   # PATCH/PUT /posities/1
   def update
-    if @positie.update(positie_params)
-      redirect_to @positie, notice: 'Positie was successfully updated.'
+    positie.calculatie = calculatie
+    positie.fabrikaat = fabrikaat
+    positie.systeem = systeem
+
+    if positie.update(positie_params)
+      redirect_to calculatie_posities_url, notice: 'Positie gewijzigd.'
     else
       render :edit
     end
@@ -41,18 +52,8 @@ class PositiesController < ApplicationController
 
   # DELETE /posities/1
   def destroy
-    @positie.destroy
-    redirect_to posities_url, notice: 'Positie was successfully destroyed.'
+    positie.destroy
+    redirect_to calculatie_posities_url, notice: 'Positie verwijderd.'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_positie
-      @positie = Positie.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def positie_params
-      params.require(:positie).permit(:number, :name, :location)
-    end
 end

@@ -1,6 +1,14 @@
-<h1>Editing Positie</h1>
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken <%= @calculatie.number %>-<%= @positie.number %></h1>
+  <hr />
+<% end %>
 
+<!-- Breadcrumbs -->
+<% breadcrumb :positie, @positie %>
+
+<!-- Form -->
 <%= render 'form', positie: @positie %>
 
-<%= link_to 'Show', @positie %> |
+<!-- Bottom links -->
 <%= link_to 'Back', posities_path %>

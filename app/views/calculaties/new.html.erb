@@ -1,8 +1,13 @@
+<!-- Page header  -->
 <%= content_for :page_title do %>
   <h1 class="text-center">Nieuwe Calculatie</h1>
   <hr />
 <% end %>
 
+<!-- Breadcrumbs -->
+
+<!-- Form -->
 <%= render 'form', calculatie: @calculatie %>
 
+<!-- Bottom links -->
 <%= link_to 'Back', calculaties_path %>

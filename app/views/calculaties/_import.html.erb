@@ -8,9 +8,10 @@
 
   <% unless @calculatie.posities.blank? %>
     <div class="callout alert text-center">
-      <h5>Calculatie is niet leeg!</h5>
+      <h1>Calculatie is niet leeg!</h1>
       <p>
-        Let op, indien je door gaat met het importeren van de calculatie zullen alle gegevens overschreven worden.
+        LET OP:<br />
+        Indien je door gaat met het importeren van de calculatie zullen ALLE gegevens worden overschreven!!!.
       </p>
     </div>
     <hr />
@@ -22,7 +23,7 @@
         <%= file_field_tag :file %>
       </div>
       <div class="form-inputs">
-        <%= submit_tag( "Import" ) %>
+        <%= submit_tag "Import", data: { disable_with: "Bezig met verwerken..." } %>
       </div>
       <!-- <label for="exampleFileUpload" class="button">Upload File</label> -->
       <!-- <input type="file" id="exampleFileUpload" class="show-for-sr"> -->

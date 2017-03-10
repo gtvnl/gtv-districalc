@@ -33,14 +33,6 @@ module Concerns
             %w(destroy).include?(params[:action]) && Calculatie.find(params[:id])
           end
 
-          def fabrikaat
-            @fabrikaat ||= Fabrikaat.find(params[:calculatie][:fabrikaat]) if params[:calculatie][:fabrikaat].present?
-          end
-
-          def systeem
-            @systeem ||= Systeem.find(params[:calculatie][:systeem]) if params[:calculatie][:systeem].present?
-          end
-
           def calculatie_params
             params.require(:calculatie).permit(:name, :number)
           end
