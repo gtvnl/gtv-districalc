@@ -17,9 +17,10 @@ gem 'gretel'
 gem 'roo'
 gem 'google-webfonts-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
-
 gem 'kaminari'
 gem 'kaminari-nobrainer'
+gem 'execjs'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'byebug', platform: :mri
