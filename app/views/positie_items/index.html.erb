@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Positie Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Positie</th>
+      <th>Item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @positie_items.each do |positie_item| %>
+      <tr>
+        <td><%= positie_item.quantity %></td>
+        <td><%= positie_item.positie %></td>
+        <td><%= positie_item.item %></td>
+        <td><%= link_to 'Show', positie_item %></td>
+        <td><%= link_to 'Edit', edit_positie_item_path(positie_item) %></td>
+        <td><%= link_to 'Destroy', positie_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Positie Item', new_positie_item_path %>

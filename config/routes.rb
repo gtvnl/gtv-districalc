@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :positie_items
   resources :items
   resources :posities
   root 'calculaties#index'

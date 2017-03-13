@@ -10,4 +10,7 @@ class Item
   field :bruto
   field :discount
   field :netto
+
+  has_many :positie_items, dependent: :destroy
+  has_many :posities, through: :positie_items
 end

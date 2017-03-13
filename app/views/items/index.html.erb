@@ -7,12 +7,12 @@
 <table>
   <thead>
     <tr>
-      <th>Leverancier</th>
-      <th>Artikelnummer</th>
-      <th>Omschrijving</th>
-      <th>Bruto prijs</th>
-      <th>Korting</th>
-      <th>Netto prijs</th>
+      <th width="5%">Leverancier</th>
+      <th width="5%">Artikelnummer</th>
+      <th width="50%">Omschrijving</th>
+      <th width="8%">Bruto prijs</th>
+      <th width="5%">Korting</th>
+      <th width="8%">Netto prijs</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,7 +24,7 @@
         <td><%= link_to item.number, edit_item_path(item) %></td>
         <td><%= item.description %></td>
         <td>&euro; <%= item.bruto %></td>
-        <td><%= item.discount %>%</td>
+        <td><%= item.netto.nil? ? item.discount : nil %>%</td>
         <td><%= item.netto.nil? ? nil : "€ #{item.netto}" %></td>
         <td>
           <!-- DELETE -->

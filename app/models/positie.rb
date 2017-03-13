@@ -2,7 +2,7 @@ class Positie
   include NoBrainer::Document
   include NoBrainer::Document::Timestamps
 
-   before_validation :set_fabrikaat_and_systeem
+  before_validation :set_fabrikaat_and_systeem
 
   field :number,    type: Integer,  required: true, unique: {:scope => :calculatie}
   field :name,      type: String,   required: true, unique: true
@@ -12,6 +12,10 @@ class Positie
 
   belongs_to :fabrikaat, required: true
   belongs_to :systeem, required: true
+
+  has_many :positie_items, dependent: :destroy
+  has_many :items, through: :positie_itemsad
+
 
     private
       def set_fabrikaat_and_systeem

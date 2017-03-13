@@ -154,6 +154,8 @@ module Concerns
 
               item = Item.upsert!(supplier: "Hager", number: artnr, description: desc, bruto: bruto, discount: korting, netto: netto)
 
+              positie = PositieItem.create(positie: @positie, item: item, quantity: aantal)
+
           end
         end
 
