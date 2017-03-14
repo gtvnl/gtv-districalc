@@ -7,6 +7,7 @@ class Positie
   field :number,    type: Integer,  required: true, unique: {:scope => :calculatie}
   field :name,      type: String,   required: true, unique: true
   field :location,  type: String
+  field :production_time, type: Integer
 
   belongs_to :calculatie, required: true
 
@@ -14,7 +15,7 @@ class Positie
   belongs_to :systeem, required: true
 
   has_many :positie_items, dependent: :destroy
-  has_many :items, through: :positie_itemsad
+  has_many :items, through: :positie_items
 
 
     private

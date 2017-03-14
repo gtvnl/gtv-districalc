@@ -20,6 +20,7 @@ gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
 
 gem 'kaminari'
 gem 'kaminari-nobrainer'
+gem 'dotiw'
 
 group :development, :test do
   gem 'byebug', platform: :mri

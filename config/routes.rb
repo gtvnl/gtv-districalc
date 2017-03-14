@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-
-  resources :positie_items
-  resources :items
-  resources :posities
   root 'calculaties#index'
+
+  concern :paginatable do
+    get '(page/:page)', action: :index, on: :collection, as: ''
+  end
+
+  # resources :positie_items
+  resources :items, concerns: :paginatable
+  resources :posities do
+    resources :items, concerns: :paginatable
+  end
 
   resources :calculaties do
     resources :posities
@@ -11,18 +17,15 @@ Rails.application.routes.draw do
     post :import
   end
 
+  # Default settings
   resources :ip_values
   resources :colors
   resources :fabrikaten do
     resources :systemen
   end
 
-  get 'alle_systemen', to: 'systemen#alle_systemen'
-
-  # get 'import', to: 'import#index'
-  # post 'import', to: 'import#import'
-  #
-  # get 'importeren', to: 'calculaties#import'
+  get 'all_systemen', to: 'systemen#all_systemen'
+  get 'all_items', to: 'items#all_items'
 
 
 end

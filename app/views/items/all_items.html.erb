@@ -1,0 +1,46 @@
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Artikelen</h1>
+  <hr />
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th width="5%">Leverancier</th>
+      <th width="5%">Artikelnummer</th>
+      <th width="50%">Omschrijving</th>
+      <th width="8%">Bruto prijs</th>
+      <th width="5%">Korting</th>
+      <th width="8%">Netto prijs</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.supplier %></td>
+        <td><%= link_to item.number, edit_item_path(item) %></td>
+        <td><%= item.description %></td>
+        <td>&euro; <%= item.bruto %></td>
+        <td><%= item.netto.nil? ? item.discount : nil %>%</td>
+        <td><%= item.netto.nil? ? nil : "€ #{item.netto}" %></td>
+        <td>
+          <!-- DELETE -->
+          <%= link_to item, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+            <i class="fi-x"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<hr />
+<%= paginate @items %>
+
+<br>
+
+<%= link_to new_item_path, class: 'button large hollow', id: 'new' do %>
+  <i class="fi-plus"></i> Nieuw Artikel
+<% end %>

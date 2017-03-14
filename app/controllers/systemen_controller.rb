@@ -2,7 +2,7 @@ class SystemenController < ApplicationController
 
   include Concerns::SystemMethods
 
-  def alle_systemen
+  def all_systemen
     @systemen = Systeem.all
   end
 

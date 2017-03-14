@@ -1,0 +1,15 @@
+<tr>
+  <td><%= link_to positie.number, edit_calculatie_positie_path(@calculatie, positie) %></td>
+  <td><%= positie.name %></td>
+  <td><%= positie.fabrikaat.name %></td>
+  <td><%= positie.systeem.name %></td>
+  <td><%= distance_of_time_in_words(positie.production_time) %></td>
+  <td><%= link_to positie.items.count, positie_items_path(positie) %></td>
+
+  <td>
+    <%= link_to calculatie_positie_path(@calculatie, positie), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+      <i class="fi-x"></i>
+    <% end %>
+  </td>
+
+</tr>

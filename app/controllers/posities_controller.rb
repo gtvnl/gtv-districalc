@@ -2,7 +2,7 @@ class PositiesController < ApplicationController
 
   include Concerns::PositieMethods
 
-  def alle_posities
+  def all_posities
     @posities = Positie.all
   end
 
@@ -29,7 +29,7 @@ class PositiesController < ApplicationController
     positie.calculatie = calculatie
     positie.fabrikaat = fabrikaat
     positie.systeem = systeem
-    
+
     if positie.save
       redirect_to calculatie_posities_url, notice: 'Positie aangemaakt.'
     else
