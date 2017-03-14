@@ -1,7 +1,6 @@
 <!-- Page header -->
 <%= content_for :page_title do %>
   <h1 class="text-center">Bewerken</h1>
-  <hr />
 <% end %>
 
 <!-- Breadcrumbs -->
@@ -11,4 +10,6 @@
 <%= render 'form', calculatie: @calculatie %>
 
 <!-- Bottom links -->
-<%= link_to 'Back', calculaties_path %>
+<%= link_to calculaties_url, class: 'button hollow secondary' do %>
+  <i class="fi-arrow-left"></i>
+<% end %>

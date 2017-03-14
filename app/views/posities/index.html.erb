@@ -2,7 +2,6 @@
 <%= content_for :page_title do %>
   <h1 class="text-center"><%= @calculatie.number %></h1>
   <h5 class="text-center"><%= @calculatie.name %></h5>
-  <hr />
 <% end %>
 
 <!-- Breadcrumbs -->
@@ -22,7 +21,7 @@
 
     <%= render 'table_header' %>
       <% @posities.each do |positie| %>
-        <%= render 'table', positie: positie %>
+        <%= render 'table', positie: positie, cached: true %>
       <% end %>
     <%= render 'table_footer' %>
 
@@ -37,7 +36,7 @@
 
       <%= render 'table_header' %>
       <% posities.each do |positie| %>
-        <%= render 'table', positie: positie %>
+        <%= render 'table', positie: positie, cached: true %>
       <% end %>
       <%= render 'table_footer' %>
 
@@ -45,13 +44,32 @@
   <% end %>
 <% end %>
 
-<hr />
-<p class="text-right">
-  <em>Totale productie tijd:
-  <strong><%= distance_of_time_in_words(Calculatie.first.posities.collect.pluck(:production_time).sum) %></strong></em>
-</p>
-<hr />
+<table>
+  <thead>
+    <tr class="callout primary">
+      <th>AANTAL UREN</th>
+      <th class="text-right">TOTAAL MONTAGE</th>
+      <th class="text-right">TOTAAL MATERIAAL BRUTO</th>
+      <th class="text-right">TOTAAL MATERIAAL NETTO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="callout">
+      <td><%= distance_of_time_in_words(@totaal_uren) unless @totaal_uren == 0 %></td>
+      <td class="text-right">&euro; <%= @montage_kosten unless @montage_kosten == 0 %></td>
+      <td class="text-right">&euro; <%= @totaal_bruto unless @totaal_bruto == 0 %></td>
+      <td class="text-right">&euro; <%= @totaal_netto unless @totaal_netto == 0 %></td>
+    </tr>
+    <tr class="callout secondary">
+      <td colspan="4" class="text-right">
+        TOTAAL OFFERTE: <strong>&euro; <%= @totaal_offerte.round %></strong>
+      </td>
+    </tr>
+  </tbody>
+  </table>
 
+
+<hr />
 <div class="expanded large button-group">
 <%= link_to new_calculatie_positie_path(@calculatie), class: 'button', id: 'new', data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
   <i class="fi-plus"></i> Positie toevoegen

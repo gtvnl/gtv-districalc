@@ -166,6 +166,7 @@ module Concerns
 
                 @montage_uren = ProductionHours.new(montage)
                 @bedradings_uren = ProductionHours.new(bedrading)
+                
                 @total_uren = @montage_uren.to_seconds + @bedradings_uren.to_seconds
 
                 @act_pos.update(production_time: @total_uren)

@@ -11,7 +11,7 @@ module Concerns
 
           def items
             positie
-            @items ||= Kaminari.paginate_array(@positie.items).page(params[:page]).per(12)
+            @items ||= Kaminari.paginate_array(@positie.items).page(params[:page]).per(10)
           end
 
           def load_item

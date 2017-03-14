@@ -4,6 +4,8 @@
   <td><%= positie.fabrikaat.name %></td>
   <td><%= positie.systeem.name %></td>
   <td><%= distance_of_time_in_words(positie.production_time) %></td>
+  <td>&euro; <%= positie.total_bruto %></td>
+  <td>&euro; <%= positie.total_netto %></td>
   <td><%= link_to positie.items.count, positie_items_path(positie) %></td>
 
   <td>

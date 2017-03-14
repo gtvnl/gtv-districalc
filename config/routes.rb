@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
-  # resources :positie_items
   resources :items, concerns: :paginatable
+
   resources :posities do
     resources :items, concerns: :paginatable
   end
