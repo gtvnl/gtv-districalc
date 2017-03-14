@@ -22,7 +22,7 @@ gem 'kaminari-nobrainer'
 gem 'dotiw'
 
 gem 'execjs'
-gem 'therubyracer'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'byebug', platform: :mri
