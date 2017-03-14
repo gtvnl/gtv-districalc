@@ -1,39 +1,30 @@
 <!-- Page header -->
 <%= content_for :page_title do %>
-  <h3 class="text-center"><%= "#{@positie.calculatie.number}-#{@positie.number}" %></h3>
-  <h4 class="text-center">Artikelen</h4>
+  <h1 class="text-center">Artikelen</h1>
 <% end %>
 
 <table>
   <thead>
     <tr>
-      <th width="5%">Aantal</th>
       <th width="5%">Leverancier</th>
       <th width="5%">Artikelnummer</th>
       <th width="50%">Omschrijving</th>
-      <th width="8%">Bruto</th>
+      <th width="8%">Bruto prijs</th>
       <th width="5%">Korting</th>
-      <th width="8%">Netto</th>
-      <th width="8%">Totaal</th>
+      <th width="8%">Netto prijs</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @items.each do |item| %>
-    <% if (item.bruto == "0.0" || (item.discount == "0.0" && item.netto.nil? )) %>
-      <tr style='background-color:#ffc7ce'>
-    <% else %>
       <tr>
-    <% end %>
-        <td><%= item.quantity(@positie) %></td>
         <td><%= item.supplier %></td>
         <td><%= link_to item.number, edit_item_path(item) %></td>
         <td><%= item.description %></td>
         <td>&euro; <%= item.bruto %></td>
-        <td><%= item.netto.nil? ? "#{item.discount} %" : "---" %></td>
+        <td><%= item.netto.nil? ? item.discount : nil %>%</td>
         <td><%= item.netto.nil? ? nil : "€ #{item.netto}" %></td>
-        <td>&euro; <%= item.total_price(@positie) %></td>
         <td>
           <!-- DELETE -->
           <%= link_to item, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
@@ -45,16 +36,10 @@
   </tbody>
 </table>
 <hr />
-
-
-<hr />
 <%= paginate @items %>
-<hr />
+
+<br>
 
 <%= link_to new_item_path, class: 'button large hollow', id: 'new' do %>
   <i class="fi-plus"></i> Nieuw Artikel
-<% end %>
-<br />
-<%= link_to calculatie_posities_url(@positie.calculatie), class: 'button hollow secondary' do %>
-  <i class="fi-arrow-left"></i>
 <% end %>

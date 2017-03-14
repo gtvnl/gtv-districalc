@@ -1,4 +1,7 @@
-<h1>Editing Item</h1>
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Bewerken</h1>
+<% end %>
 
 <%= render 'form', item: @item %>
 

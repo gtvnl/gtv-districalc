@@ -1,3 +1,7 @@
+require 'action_view'
+include ActionView::Helpers::DateHelper
+
+
 module Concerns
   module Importable
   extend ActiveSupport::Concern
@@ -134,7 +138,6 @@ module Concerns
           end
 
         posities.count.times do |index|
-          puts index
           ((start_pos[index] - 1)..(end_pos[index] - 11)).each do |line|
 
               # [0] Aantal producten
@@ -152,7 +155,32 @@ module Concerns
               korting = calculatie.parse[line][5].to_d
               netto = calculatie.parse[line][6].to_d unless calculatie.parse[line][6].nil?
 
+              if (start_pos[index] - 1) == line
+                actual_position = calculatie.parse[line - 2][0].split(",")
+                actual_position.shift if actual_position.count == 3
+                @act_pos = @calculatie.posities.where(number: actual_position[0].to_i, name: actual_position[1].to_s).first
+
+
+                montage = calculatie.parse[end_pos[index] - 6][0]
+                bedrading = calculatie.parse[end_pos[index] - 5][0]
+
+                @montage_uren = ProductionHours.new(montage)
+                @bedradings_uren = ProductionHours.new(bedrading)
+                
+                @total_uren = @montage_uren.to_seconds + @bedradings_uren.to_seconds
+
+                @act_pos.update(production_time: @total_uren)
+
+              end
+
               item = Item.upsert!(supplier: "Hager", number: artnr, description: desc, bruto: bruto, discount: korting, netto: netto)
+
+                raise "item error" unless item.valid?
+
+              positie = PositieItem.create(positie: @act_pos, item: item, quantity: aantal)
+
+                raise "positie_item error" unless positie.valid?
+
 
           end
         end

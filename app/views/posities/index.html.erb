@@ -2,7 +2,6 @@
 <%= content_for :page_title do %>
   <h1 class="text-center"><%= @calculatie.number %></h1>
   <h5 class="text-center"><%= @calculatie.name %></h5>
-  <hr />
 <% end %>
 
 <!-- Breadcrumbs -->
@@ -20,70 +19,57 @@
 
   <% if @locations.count == 1 %>
 
-    <table class="hover">
-      <thead>
-        <tr>
-          <th>Positie</th>
-          <th>Naam</th>
-          <th>Fabrikaat</th>
-          <th>Systeem</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @posities.each do |positie| %>
-          <tr>
-            <td><%= link_to positie.number, edit_calculatie_positie_path(@calculatie, positie) %></td>
-            <td><%= positie.name %></td>
-            <td><%= positie.fabrikaat.name %></td>
-            <td><%= positie.systeem.name %></td>
-            <td>
-              <!-- DELETE -->
-              <%= link_to calculatie_positie_path(@calculatie, positie), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
-                <i class="fi-x"></i>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render 'table_header' %>
+      <% @posities.each do |positie| %>
+        <%= render 'table', positie: positie, cached: true %>
+      <% end %>
+    <%= render 'table_footer' %>
+
   <% else %>
 
     <% @locations.each do |location| %>
-    <div class="callout primary text-center">
-      <strong><%= location %></strong>
-    </div>
-      <table class="hover">
-        <thead>
-          <tr>
-            <th>Positie</th>
-            <th>Naam</th>
-            <th>Locatie</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% posities = @calculatie.posities.where(location: location) %>
-          <% posities.each do |positie| %>
-            <tr>
-              <td><%= link_to positie.number, edit_calculatie_positie_path(@calculatie, positie) %></td>
-              <td><%= positie.name %></td>
-              <td><%= positie.fabrikaat.name %></td>
-              <td><%= positie.systeem.name %></td>
-              <td>
-                <%= link_to calculatie_positie_path(@calculatie, positie), method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
-                  <i class="fi-x"></i>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <% posities = @calculatie.posities.where(location: location) %>
+
+      <div class="callout primary text-center">
+        <strong><%= location %></strong>
+      </div>
+
+      <%= render 'table_header' %>
+      <% posities.each do |positie| %>
+        <%= render 'table', positie: positie, cached: true %>
+      <% end %>
+      <%= render 'table_footer' %>
+
     <% end %>
   <% end %>
 <% end %>
-<hr />
 
+<table>
+  <thead>
+    <tr class="callout primary">
+      <th>AANTAL UREN</th>
+      <th class="text-right">TOTAAL MONTAGE</th>
+      <th class="text-right">TOTAAL MATERIAAL BRUTO</th>
+      <th class="text-right">TOTAAL MATERIAAL NETTO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="callout">
+      <td><%= distance_of_time_in_words(@totaal_uren) unless @totaal_uren == 0 %></td>
+      <td class="text-right">&euro; <%= @montage_kosten unless @montage_kosten == 0 %></td>
+      <td class="text-right">&euro; <%= @totaal_bruto unless @totaal_bruto == 0 %></td>
+      <td class="text-right">&euro; <%= @totaal_netto unless @totaal_netto == 0 %></td>
+    </tr>
+    <tr class="callout secondary">
+      <td colspan="4" class="text-right">
+        TOTAAL OFFERTE: <strong>&euro; <%= @totaal_offerte.round %></strong>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+
+
+<hr />
 <div class="expanded large button-group">
 <%= link_to new_calculatie_positie_path(@calculatie), class: 'button', id: 'new', data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
   <i class="fi-plus"></i> Positie toevoegen

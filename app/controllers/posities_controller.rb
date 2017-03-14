@@ -2,12 +2,18 @@ class PositiesController < ApplicationController
 
   include Concerns::PositieMethods
 
-  def alle_posities
+  def all_posities
     @posities = Positie.all
   end
 
   # GET /posities
   def index
+    calculatie
+    @totaal_uren ||=  @calculatie.posities.collect.pluck(:production_time).sum
+    @montage_kosten ||= (@totaal_uren * (@calculatie.hourly_wage.to_d / 3600)).round(2)
+    @totaal_bruto ||=  @calculatie.posities.collect.pluck(:total_bruto).sum
+    @totaal_netto ||= @calculatie.posities.collect.pluck(:total_netto).sum
+    @totaal_offerte ||= ((@totaal_netto + @montage_kosten) * ((@calculatie.profit.to_d + 100) / 100))
     posities
   end
 
@@ -29,7 +35,7 @@ class PositiesController < ApplicationController
     positie.calculatie = calculatie
     positie.fabrikaat = fabrikaat
     positie.systeem = systeem
-    
+
     if positie.save
       redirect_to calculatie_posities_url, notice: 'Positie aangemaakt.'
     else

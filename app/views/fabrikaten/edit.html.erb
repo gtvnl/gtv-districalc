@@ -1,9 +1,9 @@
+<!-- Page header -->
 <%= content_for :page_title do %>
   <h1 class="text-center">Bewerken</h1>
-  <hr />
 <% end %>
-<%= render 'form', fabrikaat: @fabrikaat %>
 
+<%= render 'form', fabrikaat: @fabrikaat %>
 
 <%= link_to 'Show', @fabrikaat %> |
 <%= link_to 'Back', fabrikaten_path %>
