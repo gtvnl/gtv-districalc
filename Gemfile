@@ -16,11 +16,17 @@ gem 'gretel'
 gem 'roo'
 gem 'google-webfonts-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+<<<<<<< HEAD
 gem 'mini_racer'
 
 gem 'mechanize'
+=======
+>>>>>>> 0b908e53b872cc0659da96d470effcd05b6c4d42
 gem 'kaminari'
 gem 'kaminari-nobrainer'
+
+gem 'execjs'
+gem 'mini_racer'
 
 group :development, :test do
   gem 'byebug', platform: :mri
