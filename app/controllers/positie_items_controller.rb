@@ -1,30 +1,28 @@
 class PositieItemsController < ApplicationController
-  before_action :set_positie_item, only: [:show, :edit, :update, :destroy]
+  include Concerns::PositieItemMethods
 
   # GET /positie_items
   def index
-    @positie_items = PositieItem.all
-  end
-
-  # GET /positie_items/1
-  def show
+    positie_items
   end
 
   # GET /positie_items/new
   def new
-    @positie_item = PositieItem.new
+    positie_item
   end
 
   # GET /positie_items/1/edit
   def edit
+    positie_item
+  end
+
+  def show
   end
 
   # POST /positie_items
   def create
-    @positie_item = PositieItem.new(positie_item_params)
-
-    if @positie_item.save
-      redirect_to @positie_item, notice: 'Positie item was successfully created.'
+    if positie_item.save
+      redirect_to positie_positie_items_url, notice: 'Aantallen aangemaakt.'
     else
       render :new
     end
@@ -32,8 +30,8 @@ class PositieItemsController < ApplicationController
 
   # PATCH/PUT /positie_items/1
   def update
-    if @positie_item.update(positie_item_params)
-      redirect_to @positie_item, notice: 'Positie item was successfully updated.'
+    if positie_item.update(positie_item_params)
+      redirect_to positie_positie_items_url, notice: "Aantallen van artikel '#{positie_item.item.info}' gewijzigd."
     else
       render :edit
     end
@@ -41,18 +39,8 @@ class PositieItemsController < ApplicationController
 
   # DELETE /positie_items/1
   def destroy
-    @positie_item.destroy
-    redirect_to positie_items_url, notice: 'Positie item was successfully destroyed.'
+    ppositie_item.destroy
+    redirect_to positie_positie_items_url, notice: 'Aantallen verwijderd.'
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_positie_item
-      @positie_item = PositieItem.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def positie_item_params
-      params.require(:positie_item).permit(:quantity, :positie_id, :item)
-    end
 end

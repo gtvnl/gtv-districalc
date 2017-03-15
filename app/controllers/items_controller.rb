@@ -1,17 +1,9 @@
 class ItemsController < ApplicationController
   include Concerns::ItemMethods
 
-  def all_items
-    @items = Item.all.page params[:page]
-  end
-
   # GET /items
   def index
     items
-  end
-
-  # GET /items/1
-  def show
   end
 
   # GET /items/new

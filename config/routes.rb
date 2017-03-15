@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :items, concerns: :paginatable
 
   resources :posities do
-    resources :items, concerns: :paginatable
+    resources :positie_items, concerns: :paginatable
   end
 
   resources :calculaties do

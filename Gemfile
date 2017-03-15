@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'nobrainer'
-gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
@@ -17,10 +16,11 @@ gem 'gretel'
 gem 'roo'
 gem 'google-webfonts-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
+gem 'mini_racer'
 
+gem 'mechanize'
 gem 'kaminari'
 gem 'kaminari-nobrainer'
-gem 'dotiw'
 
 group :development, :test do
   gem 'byebug', platform: :mri
