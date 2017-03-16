@@ -8,6 +8,9 @@ class Calculatie
   field :hourly_wage, type: Integer
   field :profit, type: Integer
 
+  has_many :posities, dependent: :destroy
+  has_one :offerte
+
   def uurtarief
     default_wage = Preference.where(setting: "Uurtarief").first.value.to_d
     hourly_wage.nil? ? default_wage : hourly_wage
@@ -18,11 +21,20 @@ class Calculatie
     profit.nil? ? default_profit : profit
   end
 
-  has_many :posities, dependent: :destroy
-  has_one :offerte
-
   def info
     "#{number} - #{name}"
+  end
+
+  def pos_total
+    self.posities.map{ |positie|
+      {
+        number: positie.number,
+        name: positie.name,
+        fabrikaat: positie.fabrikaat.name,
+        systeem: positie.systeem.name,
+        netto: positie.total_netto
+      }
+    }
   end
 
 end

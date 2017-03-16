@@ -16,8 +16,8 @@
     <%= f.input :name, label: "Naam" %>
     <%= f.input :location, label: "Locatie" %>
 
-    <%= f.input :fabrikaat, collection: Fabrikaat.all, include_blank: false, selected: @positie.fabrikaat.nil? ? nil : @positie.fabrikaat.id %>
-    <%= f.input :systeem, collection: Systeem.all, include_blank: false, selected: @positie.systeem.nil? ? nil : @positie.systeem.id %>
+    <%= f.input :fabrikaat, collection: Fabrikaat.all, selected: @positie.fabrikaat.id %>
+    <%= f.input :systeem, collection: Systeem.all, selected: @positie.systeem.id %>
   </div>
   <hr />
   <div class="expanded large button-group">

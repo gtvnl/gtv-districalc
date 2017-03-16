@@ -1,0 +1,40 @@
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Posities</h1>
+<% end %>
+
+
+<div class="callout small">
+  <table class="hover">
+    <thead>
+      <tr>
+        <th width="5%" class="text-right">Nummer</th>
+        <th width="15%">Fabrikaat</th>
+        <th width="15%">Systeem</th>
+        <th width="30%">Verdeler</th>
+        <th width="5%" class="text-right">Aantal</th>
+        <th width="10%">Stuksprijs</th>
+        <th width="10%">Bedrag</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% posities ||= Kaminari.paginate_array(@offerte.posities).page(params[:page]).per(14) %>
+    <% posities.each do |positie| %>
+        <tr>
+          <td class="text-right"><%= positie["number"] %></td>
+          <td><%= positie["fabrikaat"] %></td>
+          <td><%= positie["systeem"] %></td>
+          <td><%= positie["name"] %></td>
+          <td class="text-right">1</td>
+          <td>&euro; <%= positie["netto"] %></td>
+          <td>&euro; <%= positie["netto"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout small text-center">
+  <%= paginate posities %>
+</div>

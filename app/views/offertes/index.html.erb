@@ -21,7 +21,7 @@
           <td><%= link_to offerte.number, edit_offerte_path(offerte) %></td>
           <td><%= offerte.description %></td>
           <td><%= link_to offerte.calculatie.info, edit_calculatie_path(offerte.calculatie) %></td>
-          <td><%= link_to offerte.calculatie.posities.count, '#'%></td>
+          <td><%= link_to offerte.calculatie.posities.count, offerte_posities_path(offerte) %></td>
 
 
           <td>

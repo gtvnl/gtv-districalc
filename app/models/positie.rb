@@ -9,6 +9,13 @@ class Positie
   field :location,  type: String
   field :production_time, type: Integer
 
+  belongs_to :calculatie, required: true
+  belongs_to :fabrikaat, required: true
+  belongs_to :systeem, required: true
+
+  has_many :positie_items, dependent: :destroy
+  has_many :items, through: :positie_items
+
   def total_netto
     @total_netto = 0.0
     PositieItem.where(positie: self).join(:item).map do |pos|
@@ -28,15 +35,7 @@ class Positie
     end
     @total_bruto.round(2)
   end
-
-  belongs_to :calculatie, required: true
-
-  belongs_to :fabrikaat, required: true
-  belongs_to :systeem, required: true
-
-  has_many :positie_items, dependent: :destroy
-  has_many :items, through: :positie_items
-
+  
     private
       def set_fabrikaat_and_systeem
         self.fabrikaat = Fabrikaat.first

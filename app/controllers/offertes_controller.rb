@@ -1,6 +1,10 @@
 class OffertesController < ApplicationController
   include Concerns::OfferteMethods
 
+  def posities
+    @offerte ||= Offerte.find(params[:offerte_id])
+  end
+
   # GET /offertes
   def index
     offertes
@@ -19,6 +23,7 @@ class OffertesController < ApplicationController
   # POST /offertes
   def create
     offerte.calculatie = calculatie
+    offerte.posities = calculatie.pos_total
 
     if offerte.save
       redirect_to offertes_url, notice: 'Offerte aangemaakt.'
@@ -30,6 +35,7 @@ class OffertesController < ApplicationController
   # PATCH/PUT /offertes/1
   def update
     offerte.calculatie = calculatie
+    offerte.posities = calculatie.pos_total
 
     if offerte.update(offerte_params)
       redirect_to offertes_url, notice: 'Offerte gewijzigd.'
@@ -43,5 +49,6 @@ class OffertesController < ApplicationController
     offerte.destroy
     redirect_to offertes_url, notice: 'Offerte verwijderd.'
   end
+
 
 end

@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  resources :preferences, only: [:index, :edit, :update]
-  resources :offertes
-  root 'calculaties#index'
 
   concern :paginatable do
     get '(page/:page)', action: :index, on: :collection, as: ''
+  end
+
+  root 'calculaties#index'
+
+  resources :preferences, only: [:index, :edit, :update]
+  resources :offertes, concerns: :paginatable do
+    get :posities
   end
 
   resources :items, concerns: :paginatable
@@ -28,6 +32,7 @@ Rails.application.routes.draw do
 
   get 'all_systemen', to: 'systemen#all_systemen'
   get 'all_items', to: 'items#all_items'
+
 
 
 end
