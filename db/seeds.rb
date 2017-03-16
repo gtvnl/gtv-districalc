@@ -21,3 +21,12 @@ end
 
 standaard = Fabrikaat.upsert!(name: ntb)
 systeem = Systeem.upsert!(fabrikaat: standaard, name: ntb, klass: ntb, has_door: false, color: color, ip_value: ip_value)
+
+Fabrikaat.upsert!(name: "ABB")
+Fabrikaat.upsert!(name: "Eaton")
+Fabrikaat.upsert!(name: "Hager")
+Fabrikaat.upsert!(name: "Legrand")
+Fabrikaat.upsert!(name: "Siemens")
+
+Preference.create(setting: "Uurloon", value: 40.0)
+Preference.create(setting: "Winstpercentage", value: 15.0)

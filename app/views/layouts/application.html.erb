@@ -11,21 +11,21 @@
 
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <%= google_webfonts_init({ google: ['Roboto Slab', 'Roboto']}) %>
+    <%= google_webfonts_init({ google: ['Nunito', 'Oxygen']}) %>
   </head>
 
   <body>
 
     <%= render 'layouts/top_bar' %>
-
-
     <%= render 'layouts/breadcrumbs' %>
 
-    <div class="row expanded large-10 columns">
-      <div class="callout small">
-        <%= yield :page_title %>
+    <% if content_for?(:page_title) %>
+      <div class="row expanded large-10 columns">
+        <div class="card">
+          <%= yield :page_title %>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="row expanded large-10 columns">
       <h3 class="text-center"><%= display_flash_messages %></h3>

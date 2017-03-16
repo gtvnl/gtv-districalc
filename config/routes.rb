@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :preferences, only: [:index, :edit, :update]
+  resources :offertes
   root 'calculaties#index'
 
   concern :paginatable do

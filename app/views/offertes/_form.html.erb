@@ -1,0 +1,22 @@
+<%= simple_form_for(@offerte) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :number, label: "Project nummer" %>
+    <%= f.input :description, label: "Project naam" %>
+  </div>
+  <div class="form-inputs">
+    <%= f.input :calculatie, label: "Bijbehorende Calculatie", label_method: :info, collection: Calculatie.all,  selected: @offerte.calculatie.id %>
+  </div>
+  <div class="expanded large button-group">
+    <%= f.button :button, class: "button primary", data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
+
+      <% if @offerte.new_record? %>
+        <i class="fi-plus"></i> Toevoegen
+      <% else %>
+        <i class="fi-check"></i> Bijwerken
+      <% end %>
+
+    <% end %>
+  </div>
+<% end %>

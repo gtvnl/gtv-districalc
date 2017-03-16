@@ -1,0 +1,46 @@
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Offertes</h1>
+<% end %>
+
+<div class="callout small">
+  <table class="hover">
+    <thead>
+      <tr>
+        <th>Nummer</th>
+        <th>Omschrijving</th>
+        <th>Calculatie</th>
+        <th>Posities</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @offertes.each do |offerte| %>
+        <tr>
+          <td><%= link_to offerte.number, edit_offerte_path(offerte) %></td>
+          <td><%= offerte.description %></td>
+          <td><%= link_to offerte.calculatie.info, edit_calculatie_path(offerte.calculatie) %></td>
+          <td><%= link_to offerte.calculatie.posities.count, '#'%></td>
+
+
+          <td>
+            <!-- DELETE -->
+            <%= link_to offerte, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+              <i class="fi-x"></i>
+            <% end %>
+          </td>
+
+
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="expanded large button-group">
+  <%= link_to new_offerte_path, class: 'button', id: 'new' do %>
+    <i class="fi-plus"></i> Offerte toevoegen
+  <% end %>
+</div>

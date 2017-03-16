@@ -2,7 +2,7 @@ class Item
   include NoBrainer::Document
   include NoBrainer::Document::Timestamps
 
-  paginates_per 14
+  paginates_per 11
 
   field :supplier, :type => String
   field :number, :type => String, unique: true

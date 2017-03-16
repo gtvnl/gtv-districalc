@@ -11,7 +11,7 @@ class Positie
 
   def total_netto
     @total_netto = 0.0
-    PositieItem.where(positie: self).map do |pos|
+    PositieItem.where(positie: self).join(:item).map do |pos|
       unless pos.item.discount == "0.0" && !pos.item.netto.nil?
         @total_netto += (pos.quantity.to_d * (((100 - pos.item.discount.to_d) / 100) * pos.item.bruto.to_d))
       else
@@ -23,7 +23,7 @@ class Positie
 
   def total_bruto
     @total_bruto = 0.0
-    PositieItem.where(positie: self).map do |pos|
+    PositieItem.where(positie: self).join(:item).map do |pos|
       @total_bruto += (pos.quantity.to_d * pos.item.bruto.to_d)
     end
     @total_bruto.round(2)

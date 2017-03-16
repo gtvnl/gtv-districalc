@@ -1,0 +1,11 @@
+<!-- Page header -->
+<%= content_for :page_title do %>
+  <h1 class="text-center">Offerte wijzigen</h1>
+<% end %>
+
+<%= render 'form', offerte: @offerte %>
+
+<!-- Bottom links -->
+<%= link_to offertes_url, class: 'button hollow secondary' do %>
+  <i class="fi-arrow-left"></i>
+<% end %>

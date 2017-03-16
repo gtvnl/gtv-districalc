@@ -5,41 +5,43 @@
 
 <!-- Table -->
 <% if @calculaties.blank? %>
-  <%= render 'no_data' %>
+  <%= render 'layouts/no_data' %>
 <% else %>
-
-<table class="hover">
-  <thead>
-    <tr>
-      <th width="100px" class="text-right">Nummer</th>
-      <th width="50px" class="text-left">Posities</th>
-
-      <th>Project naam</th>
-      <th width="10px"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @calculaties.each do |calculatie| %>
+<div class="callout small">
+  <table class="hover">
+    <thead>
       <tr>
-        <td class="text-right"><%= link_to calculatie.number, edit_calculatie_path(calculatie) %></td>
-        <td class="text-left"><%= link_to calculatie.posities.count, calculatie_posities_path(calculatie) %></td>
+        <th width="100px" class="text-right">Nummer</th>
+        <th width="50px" class="text-left">Posities</th>
 
-        <td><%= calculatie.name %></td>
-
-        <td>
-          <!-- DELETE -->
-          <%= link_to calculatie, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
-            <i class="fi-x"></i>
-          <% end %>
-        </td>
+        <th>Project naam</th>
+        <th width="10px"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @calculaties.each do |calculatie| %>
+        <tr>
+          <td class="text-right"><%= link_to calculatie.number, edit_calculatie_path(calculatie) %></td>
+          <td class="text-left"><%= link_to calculatie.posities.count, calculatie_posities_path(calculatie) %></td>
+
+          <td><%= calculatie.name %></td>
+
+          <td>
+            <!-- DELETE -->
+            <%= link_to calculatie, method: :delete, data: { confirm: 'Weet je het zeker?' } do %>
+              <i class="fi-x"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-<hr />
-<%= link_to new_calculatie_path, class: 'button', id: 'new' do %>
-  <i class="fi-plus"></i> Calculatie toevoegen
-<% end %>
+</div>
+
+<div class="expanded large button-group">
+  <%= link_to new_calculatie_path, class: 'button', id: 'new' do %>
+    <i class="fi-plus"></i> Calculatie toevoegen
+  <% end %>
+</div>

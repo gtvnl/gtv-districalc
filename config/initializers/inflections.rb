@@ -10,6 +10,7 @@ inflect.irregular 'systeem', 'systemen'
 inflect.irregular 'fabrikaat_systeem', 'fabrikaat_systemen'
 inflect.irregular 'calculatie', 'calculaties'
 inflect.irregular 'positie', 'posities'
+inflect.irregular 'offerte', 'offertes'
 
 #   inflect.singular /^(ox)en/i, '\1'
 #   inflect.irregular 'person', 'people'

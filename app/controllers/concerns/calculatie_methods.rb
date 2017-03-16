@@ -10,7 +10,7 @@ module Concerns
           end
 
           def calculaties
-            @calculaties ||= Calculatie.all
+            @calculaties ||= Calculatie.all.page params[:page]
           end
 
           def load_calculatie

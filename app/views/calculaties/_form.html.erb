@@ -5,16 +5,14 @@
 <%= simple_form_for(@calculatie) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs callout primary">
+  <div class="form-inputs callout small">
     <%= f.input :name, label: "Project naam" %>
     <%= f.input :number, label: "Offerte nummer", input_html: { value: @calculatie.new_record? ? "#{Date.today.year}00".to_i : @calculatie.number } %>
   </div>
-  <hr />
-  <div class="form-inputs callout small secondary">
-    <%= f.input :hourly_wage, label: "Uurtarief" %>
-    <%= f.input :profit, label: "Winstmarge" %>
+  <div class="form-inputs">
+    <%= f.input :hourly_wage, label: "Uurtarief", input_html: { value: @calculatie.uurtarief } %>
+    <%= f.input :profit, label: "Winstmarge", input_html: { value: @calculatie.winstmarge } %>
   </div>
-  <hr />
   <div class="expanded large button-group">
     <%= f.button :button, class: "button primary", data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
       <i class="fi-check"></i> Bijwerken
