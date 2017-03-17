@@ -11,30 +11,38 @@
         <th width="5%" class="text-right">Nummer</th>
         <th width="15%">Fabrikaat</th>
         <th width="15%">Systeem</th>
-        <th width="30%">Verdeler</th>
-        <th width="5%" class="text-right">Aantal</th>
-        <th width="10%">Stuksprijs</th>
+        <th width="20%">Verdeler</th>
+        <th width="15%" class="text-right">Aantal</th>
+        <th width="20%">Stuksprijs</th>
         <th width="10%">Bedrag</th>
       </tr>
     </thead>
 
     <tbody>
     <% posities ||= Kaminari.paginate_array(@offerte.posities).page(params[:page]).per(14) %>
-    <% posities.each do |positie| %>
+    <% posities.each_with_index do |positie, index| %>
+        <%= simple_form_for :positie, url: offerte_edit_positie_path do |f| %>
+          <%= f.error_notification %>
+
         <tr>
           <td class="text-right"><%= positie["number"] %></td>
           <td><%= positie["fabrikaat"] %></td>
           <td><%= positie["systeem"] %></td>
           <td><%= positie["name"] %></td>
-          <td class="text-right">1</td>
-          <td>&euro; <%= positie["netto"] %></td>
-          <td>&euro; <%= positie["netto"] %></td>
+          <td class="text-right">
+            <%= render 'button', f: f, field: positie["aantal"], symbol: nil, name: "aantal", index: index %></td>
+          <td>
+            <%= render 'button', f: f, field: positie["netto"], symbol: "€", name: "price", index: index %>
+          </td>
+          <td>&euro; <%= positie["aantal"].to_d * positie["netto"].to_d %></td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
 </div>
-
-<div class="callout small text-center">
-  <%= paginate posities %>
-</div>
+<% unless posities.total_pages == 1 %>
+  <div class="callout small text-center">
+    <%= paginate posities %>
+  </div>
+<% end %>

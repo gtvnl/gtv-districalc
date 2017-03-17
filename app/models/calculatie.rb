@@ -29,10 +29,11 @@ class Calculatie
     self.posities.map{ |positie|
       {
         number: positie.number,
+        aantal: 1,
         name: positie.name,
         fabrikaat: positie.fabrikaat.name,
         systeem: positie.systeem.name,
-        netto: positie.total_netto
+        netto: positie.total_netto.to_d
       }
     }
   end

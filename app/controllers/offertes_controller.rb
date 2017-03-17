@@ -1,6 +1,22 @@
 class OffertesController < ApplicationController
   include Concerns::OfferteMethods
 
+  def edit_positie
+    @offerte =  @offerte = Offerte.find(params[:offerte_id])
+
+    aantal = params[:aantal].to_i
+    price = params[:price].to_d
+    index = params[:index].to_i
+
+    @offerte.posities[index]["aantal"] = aantal
+    @offerte.posities[index]["netto"] = price
+    @offerte.save
+
+    raise "error" unless @offerte.valid?
+
+    redirect_to offerte_posities_path, notice: "Aantal: #{aantal} // Prijs: #{price}"
+  end
+
   def posities
     @offerte ||= Offerte.find(params[:offerte_id])
   end

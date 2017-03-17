@@ -1,0 +1,16 @@
+<div class="small-12 columns">
+  <div class="input-group">
+    <% unless symbol.blank? %>
+      <span class="input-group-label" style="width:50px;"><%= symbol %></span>
+    <% end %>
+
+    <input class="input-group-field" type="number" name="<%= name %>" id="<%= field %>" value="<%= field %>">
+    <input type="hidden" name="index" value="<%= index %>">
+
+    <div class="input-group-button">
+      <%= f.button :button, class: "button primary", data: { disable_with: "<i class='fi-clock'></i>" } do %>
+        <i class="fi-check"></i>
+      <% end %>
+    </div>
+  </div>
+</div>

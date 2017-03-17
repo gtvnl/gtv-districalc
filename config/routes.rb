@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :preferences, only: [:index, :edit, :update]
   resources :offertes, concerns: :paginatable do
     get :posities
+    post 'edit_positie', to: 'offertes#edit_positie'
   end
 
   resources :items, concerns: :paginatable
