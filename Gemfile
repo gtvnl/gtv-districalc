@@ -16,12 +16,12 @@ gem 'gretel'
 gem 'roo'
 gem 'google-webfonts-rails'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x
-# gem 'devise'
+gem 'devise'
 gem 'kaminari'
 gem 'kaminari-nobrainer'
 
 # for webscraping
-#gem 'mechanize'
+gem 'mechanize'
 
 
 
