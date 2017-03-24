@@ -35,4 +35,6 @@ class User
   # field :locked_at,       :type => Time
   include NoBrainer::Document::Timestamps
 
+
+
 end

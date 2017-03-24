@@ -3,8 +3,12 @@
   <h1 class="text-center">Alle Artikelen</h1>
 <% end %>
 
-<div class="callout small primary">
+<!-- Table -->
+<% if @items.blank? %>
+  <%= render 'layouts/no_data' %>
+<% else %>
 
+<div class="callout small primary">
 <table class="hover">
   <thead>
     <tr>
@@ -61,6 +65,7 @@
   <%= paginate @items %>
 </div>
 
+<% end %>
 <%= link_to new_item_path, class: 'button large hollow', id: 'new' do %>
   <i class="fi-plus"></i> Nieuw Artikel
 <% end %>

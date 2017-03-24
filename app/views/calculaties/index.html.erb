@@ -7,6 +7,7 @@
 <% if @calculaties.blank? %>
   <%= render 'layouts/no_data' %>
 <% else %>
+
 <div class="callout small">
   <table class="hover">
     <thead>
@@ -38,10 +39,9 @@
     </tbody>
   </table>
 <% end %>
-</div>
 
-<div class="expanded large button-group">
-  <%= link_to new_calculatie_path, class: 'button', id: 'new' do %>
+<div class="large button-group">
+  <%= link_to new_calculatie_path, class: 'button hollow', id: 'new' do %>
     <i class="fi-plus"></i> Calculatie toevoegen
   <% end %>
 </div>

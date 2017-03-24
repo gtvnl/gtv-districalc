@@ -14,21 +14,35 @@
       <ul class="dropdown menu" data-dropdown-menu>
         <li><%= link_to 'offertes', offertes_path %></li>
         <li><%= link_to 'calculaties', calculaties_path %></li>
-        <li><%= link_to 'fabrikaten', fabrikaten_path %>
-            <ul class="menu vertical">
-                <li><%= link_to 'systemen', all_systemen_path %></li>
-            </ul></li>
+        <li>
+          <%= link_to 'fabrikaten', fabrikaten_path %>
+          <ul class="menu vertical">
+              <li><%= link_to 'systemen', all_systemen_path %></li>
+          </ul>
+        </li>
         <li><%= link_to 'artikelen', items_path %></li>
       </ul>
     </div>
     <!-- Right -->
     <div class="top-bar-right">
-      <ul class="menu">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <% if user_signed_in? %>
         <li>
           <%= link_to preferences_path do %>
-            <i style='font-size:24px' class="fi-widget"></i> voorkeuren
+            <i style='font-size:24px' class="fi-torso"></i> <%= current_user.email %>
           <% end %>
+          <ul class="menu vertical">
+            <li>
+              <%= link_to preferences_path do %>
+                <i style='font-size:24px' class="fi-widget"></i> voorkeuren
+              <% end %>
+            </li>
+            <li>
+              <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

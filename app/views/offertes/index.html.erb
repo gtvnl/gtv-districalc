@@ -3,6 +3,11 @@
   <h1 class="text-center">Offertes</h1>
 <% end %>
 
+<!-- Table -->
+<% if @offertes.blank? %>
+  <%= render 'layouts/no_data' %>
+<% else %>
+
 <div class="callout small">
   <table class="hover">
     <thead>
@@ -36,11 +41,10 @@
       <% end %>
     </tbody>
   </table>
-</div>
+<% end %>
 
-
-<div class="expanded large button-group">
-  <%= link_to new_offerte_path, class: 'button', id: 'new' do %>
+<div class="large button-group">
+  <%= link_to new_offerte_path, class: 'button hollow', id: 'new' do %>
     <i class="fi-plus"></i> Offerte toevoegen
   <% end %>
 </div>
