@@ -13,7 +13,7 @@ class PositiesController < ApplicationController
     @montage_kosten ||= (@totaal_uren * (@calculatie.uurtarief.to_d / 3600)).round(2)
     @totaal_bruto ||=  @calculatie.posities.collect.pluck(:total_bruto).sum
     @totaal_netto ||= @calculatie.posities.collect.pluck(:total_netto).sum
-    @totaal_offerte ||= ((@totaal_netto + @montage_kosten) * ((@calculatie.winstmarge.to_d + 100) / 100))
+    @totaal_calculatie ||= @totaal_netto + @montage_kosten
     posities
   end
 

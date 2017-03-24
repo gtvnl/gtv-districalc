@@ -5,7 +5,7 @@ class OffertesController < ApplicationController
     @offerte =  @offerte = Offerte.find(params[:offerte_id])
 
     aantal = params[:aantal].to_i
-    price = params[:price].to_d
+    price = params[:price].to_i.round
     index = params[:index].to_i
 
     @offerte.posities[index]["aantal"] = aantal
@@ -40,6 +40,7 @@ class OffertesController < ApplicationController
   def create
     offerte.calculatie = calculatie
     offerte.posities = calculatie.pos_total
+    offerte.posities.each{ |pos| pos[:netto] = pos[:netto] * ((offerte.winstmarge + 100) / 100) }
 
     if offerte.save
       redirect_to offertes_url, notice: 'Offerte aangemaakt.'
@@ -52,6 +53,7 @@ class OffertesController < ApplicationController
   def update
     offerte.calculatie = calculatie
     offerte.posities = calculatie.pos_total
+    offerte.posities.each{ |pos| pos[:netto] = pos[:netto] * ((offerte.winstmarge + 100) / 100) }
 
     if offerte.update(offerte_params)
       redirect_to offertes_url, notice: 'Offerte gewijzigd.'

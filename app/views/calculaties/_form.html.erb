@@ -9,10 +9,7 @@
     <%= f.input :name, label: "Project naam" %>
     <%= f.input :number, label: "Offerte nummer", input_html: { value: @calculatie.new_record? ? "#{Date.today.year}00".to_i : @calculatie.number } %>
   </div>
-  <div class="form-inputs">
-    <%= f.input :hourly_wage, label: "Uurtarief", input_html: { value: @calculatie.uurtarief } %>
-    <%= f.input :profit, label: "Winstmarge", input_html: { value: @calculatie.winstmarge } %>
-  </div>
+
   <div class="expanded large button-group">
     <%= f.button :button, class: "button primary", data: { disable_with: "<i class='fi-clock'></i> Verwerken..." } do %>
       <i class="fi-check"></i> Bijwerken

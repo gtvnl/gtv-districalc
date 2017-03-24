@@ -34,7 +34,7 @@
           <td>
             <%= render 'button', f: f, field: positie["netto"], symbol: "€", name: "price", index: index %>
           </td>
-          <td>&euro; <%= positie["aantal"].to_d * positie["netto"].to_d %></td>
+          <td>&euro; <%= positie["aantal"] * positie["netto"].to_i %></td>
         </tr>
         <% end %>
       <% end %>
